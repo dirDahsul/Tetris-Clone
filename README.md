@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to my first Xamarin project, a Tetris clone built for educational and personal purposes. The objective of this project was to create a functional Tetris clone in the shortest time possible while familiarizing myself with the Xamarin IDE and its capabilities. This project is designed for mobile devices and features adaptable UI elements that scale appropriately across different screen sizes.
+Welcome to my first Xamarin project, created 2022, published today - a Tetris clone built for educational and personal purposes. The objective of this project was to create a functional Tetris clone in the shortest time possible while familiarizing myself with the Xamarin IDE and its capabilities. This project is designed for mobile devices and features adaptable UI elements that scale appropriately across different screen sizes.
 
 > **Note:** This project is purely for personal use and will not be monetized, sold, or distributed in any form or way. It is not intended for commercial use or distribution and it is a personal project to demonstrate personal skills and growth.
 
@@ -42,7 +42,12 @@ Welcome to my first Xamarin project, a Tetris clone built for educational and pe
 
 ## Screenshots
 
-*(Add screenshots of your app here)*
+*(Video section)*
+[Watch the video](https://github.com/dirDahsul/Tetris-Clone/Screenrecorder-2022-..(1).mp4.mp4)
+[Watch the video](https://github.com/dirDahsul/Tetris-Clone/Screenrecorder-2022-..(2).mp4.mp4)
+[Watch the video](https://github.com/dirDahsul/Tetris-Clone/Screenrecorder-2022-..(3).mp4.mp4)
+[Watch the video](https://github.com/dirDahsul/Tetris-Clone/Screenrecorder-2022-..(4).mp4.mp4)
+[Watch the video](https://github.com/dirDahsul/Tetris-Clone/Screenrecorder-2022-..(5).mp4.mp4)
 
 ## Getting Started
 
@@ -55,7 +60,7 @@ To run this project, you will need:
 (Note: Android support only. Project itself is build on Xamarin.Forms, so technically code can be easily recompiled for iOS use)
 (Note: Project files removed from repository to make sure distribution is not possible in any way or form)
 
-### Installation
+~~### Installation~~ (Not possible, as project pages have been deleted to protect agains distribution)
 
 1. Clone this repository:
 
