@@ -60,7 +60,7 @@ To run this project, you will need:
 (Note: Android support only. Project itself is build on Xamarin.Forms, so technically code can be easily recompiled for iOS use)
 (Note: Project files removed from repository to make sure distribution is not possible in any way or form)
 
-~~### Installation~~ (Not possible, as project pages have been deleted to protect agains distribution)
+### ~~Installation~~ (Not possible, as project pages have been deleted to protect agains distribution)
 
 1. Clone this repository:
 
