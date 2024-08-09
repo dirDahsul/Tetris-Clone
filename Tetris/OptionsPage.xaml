@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tetris.OptionsPage"
+             Title="Настройки">
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <!--<Frame BackgroundColor="DeepSkyBlue" Padding="20" CornerRadius="0">
+                <Label Text="Tetris Settings" HorizontalTextAlignment="Center" TextColor="White" FontSize="30"/>
+            </Frame>-->
+
+            <StackLayout VerticalOptions="Start">
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="Field Settings">
+
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Source={x:Reference FieldWidth}, Path=Value, StringFormat='Columns: {0:#}'}"
+                                           Margin="15, 12, 0, 0" HorizontalOptions="StartAndExpand"/>
+                                    <Slider x:Name="FieldWidth" Maximum="20" Value="10" Minimum="5" WidthRequest="275" HeightRequest="10" Margin="10,0"
+                                            ThumbColor="DarkTurquoise" BackgroundColor="WhiteSmoke"/>
+                                    <!--ValueChanged="FieldWidth_ValueChanged"-->
+                                </StackLayout>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Source={x:Reference FieldHeight}, Path=Value, StringFormat='Rows: {0:#}'}"
+                                           Margin="15, 12, 0, 0" HorizontalOptions="StartAndExpand"/>
+                                    <Slider x:Name="FieldHeight" Maximum="40" Value="20" Minimum="10" WidthRequest="275" HeightRequest="20" Margin="10,0"
+                                            ThumbColor="DarkTurquoise" BackgroundColor="WhiteSmoke"/>
+                                    <!--ValueChanged="FieldHeight_ValueChanged"-->
+                                </StackLayout>
+                            </ViewCell>
+                            
+                            <SwitchCell x:Name="StretchToFit" Text="Stretch Tetris field to fit device screen" On="True" OnColor="Blue"/>
+                            <!--OnChanged="StretchToFit_OnChanged"-->
+
+                            <ViewCell>
+                                <Grid x:Name="FieldPanel" VerticalOptions="FillAndExpand" Padding="10">
+                                </Grid>
+                            </ViewCell>
+                        </TableSection>
+
+                        <TableSection Title="Figure Settings">
+
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Figure" Margin="14, 10, 0, 0" HorizontalOptions="StartAndExpand"/>
+                                    <Picker x:Name="SelectedFigure" SelectedIndex="1" Margin="10,0" Title="Изберете фигура"
+                                        WidthRequest="280" HeightRequest="20" SelectedIndexChanged="SelectedFigure_SelectedIndexChanged">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>I</x:String>
+                                                <x:String>J</x:String>
+                                                <x:String>L</x:String>
+                                                <x:String>O</x:String>
+                                                <x:String>S</x:String>
+                                                <x:String>T</x:String>
+                                                <x:String>Z</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </StackLayout>
+                            </ViewCell>
+                            
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Color" Margin="14, 10, 0, 0" HorizontalOptions="StartAndExpand"/>
+                                    <Picker x:Name="SelectedColor" Margin="10, 0" SelectedIndex="1" Title="Изберете цвета на фигурата"
+                                        WidthRequest="280" SelectedIndexChanged="SelectedColor_SelectedIndexChanged">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Blue</x:String>
+                                                <x:String>Green</x:String>
+                                                <x:String>Red</x:String>
+                                                <x:String>Violet</x:String>
+                                                <x:String>Orange</x:String>
+                                                <x:String>Cyan</x:String>
+                                                <x:String>Pink</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </StackLayout>
+
+            <Grid x:Name="TetrominoPanel" VerticalOptions="FillAndExpand" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <BoxView x:Name="TetrominoPiece1" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" CornerRadius="0"/>
+                    <BoxView x:Name="TetrominoPiece2" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" CornerRadius="0"/>
+                    <BoxView x:Name="TetrominoPiece3" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" CornerRadius="0"/>
+                    <BoxView x:Name="TetrominoPiece4" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" CornerRadius="0"/>
+                </Grid>
+
+                <Button x:Name="BtnSave" Text="SAVE" Grid.Row="1" BackgroundColor="#073E7B" TextColor="White" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="Center" Clicked="BtnSave_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tetris.HowToPlayPage"
+             BackgroundColor="#00466e"
+             Title="How to play">
+    
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Label Text=" --- FILTRIS BASICS --- " TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Large"/>
+            <Label TextColor="White" Text="In Filtris, players complete lines by moving differently shaped pieces (tetrominoes), which descend onto the playing field. The completed lines disappear and grant the player points, and the player can proceed to fill the vacated spaces. The game ends when the playing field is filled or the time limit is reached (depending on selected game mode). The longer the player can delay this outcome or the more lines the player can complete, the higher their score will be." HorizontalOptions="Start" VerticalOptions="Start" HorizontalTextAlignment="Start" FontAttributes="None" FontSize="Small" Padding="0,10,0,20"/>
+            <Label Text="Good luck!" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="Large"/>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

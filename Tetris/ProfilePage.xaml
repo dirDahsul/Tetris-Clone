@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Tetris.ProfilePage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Profile"
+             x:Name="page">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:MathExpressionConverter x:Key="MathExpressionConverter" />
+            <xct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid x:Name="bdGrid">
+        <BoxView x:Name="bdGradient" Scale="1.2" AnchorX="1" AnchorY="0">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="-0.85,0.2" EndPoint="1,1">
+                    <GradientStop Color="#1db7de" Offset="0.25"/>
+                    <GradientStop Color="#1c98ba" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.50"/>
+                    <GradientStop Color="#1bacd1" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.77"/>
+                    <GradientStop Color="#1d8eb5" Offset="0.77"/>
+                    <GradientStop Color="#207591" Offset="0.88"/>
+                    <GradientStop Color="#113c4a" Offset="1.00"/>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <ScrollView Margin="20,40,20,0" Grid.Row="0">
+                <Grid x:Name="bdProfile" Padding="0,0,0,20" HeightRequest="{Binding Source={x:Reference page}, Path=ScreenHeight, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*1.1'}" RowSpacing="{Binding Source={x:Reference page}, Path=ScreenHeight, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.02'}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3.5*"/>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid RowSpacing="0" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="5.5*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid x:Name="grAvatar" Grid.Row="0">
+                            <Image Source="avatar_background.png" xct:CornerRadiusEffect.CornerRadius="5,5,0,0" Aspect="AspectFill" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+
+                            <Grid x:Name="gr1" HeightRequest="{Binding Source={x:Reference grAvatar}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.75'}" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Grid.WidthRequest>
+                                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0-(x1*0.25)">
+                                        <Binding Source="{x:Reference grAvatar}" Path="Width"/>
+                                        <Binding Source="{x:Reference grAvatar}" Path="Height"/>
+                                    </MultiBinding>
+                                </Grid.WidthRequest>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image x:Name="imgAvatar" Source="avatar_image0.jpg" Aspect="Fill" VerticalOptions="Fill" WidthRequest="{Binding Source={x:Reference gr1}, Path=Height}" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference gr1}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.15'}" Grid.Row="0" Grid.Column="0"/>
+                                <Grid x:Name="gr2" Grid.Row="0" Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label x:Name="lblLevel" Text="Lv" FontSize="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" TextColor="White" VerticalTextAlignment="End" VerticalOptions="End" HorizontalTextAlignment="Start" HorizontalOptions="Start" FontAttributes="None" Grid.Row="0"/>
+                                    <ProgressBar x:Name="pbExperience" HeightRequest="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" WidthRequest="{Binding Source={x:Reference gr2}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.33'}" Progress="0.15" BackgroundColor="#7F000000" ProgressColor="Goldenrod" HorizontalOptions="Start" VerticalOptions="Start" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" Grid.Row="1"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid x:Name="gr3" Grid.Row="1">
+                            <BoxView BackgroundColor="#2a60b8" CornerRadius="0,0,5,5"/>
+                            <Label WidthRequest="{Binding Source={x:Reference gr1}, Path=Width}" x:Name="lblUsername" Text="username" FontSize="{Binding Source={x:Reference gr3}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.7'}" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Username"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="gr4" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="avatar_icon.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0"/>
+                        <Label Text="Avatar" FontSize="{Binding Source={x:Reference gr4}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(9/34))*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="1"/>
+                        <BoxView BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="{Binding Source={x:Reference gr4}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.33'}" Grid.Row="2"/>
+                    </Grid>
+
+                    <ScrollView Grid.Row="2">
+                        <Frame BackgroundColor="#7F000000" CornerRadius="5">
+                            <StackLayout x:Name="bdAvatars" Orientation="Vertical">
+                            </StackLayout>
+                        </Frame>
+                    </ScrollView>
+
+                    <Frame Grid.Row="3" BackgroundColor="#7F000000" CornerRadius="5">
+                        <Grid x:Name="gr5" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblLinesCleared" Text="58" FontSize="{Binding Source={x:Reference gr5}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(6/8))*0.8'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" Grid.Row="0"/>
+                            <Label Text="Lines Cleared" FontSize="{Binding Source={x:Reference gr5}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(2/8))*0.8'}" FontAttributes="None" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="End" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="1"/>
+                        </Grid>
+                    </Frame>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0" BackgroundColor="#7F000000" CornerRadius="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Image Source="marathon.png" BackgroundColor="Transparent" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0"/>
+                                <Grid x:Name="gr6" Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="13*"/>
+                                        <RowDefinition Height="10*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="Marathon Highest Score" FontSize="{Binding Source={x:Reference gr6}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='((x*(13/23))*0.8)/2'}" FontAttributes="None" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0"/>
+                                    <Label x:Name="lblMarathonHighScore" Text="2279" FontSize="{Binding Source={x:Reference gr6}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(10/23))*0.8'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="End" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="1"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Column="1" BackgroundColor="#7F000000" CornerRadius="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Image Source="quickplay.png" BackgroundColor="Transparent" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0"/>
+                                <Grid x:Name="gr7" Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="13*"/>
+                                        <RowDefinition Height="10*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="Quick Play Highest Score" FontSize="{Binding Source={x:Reference gr7}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='((x*(13/23))*0.8)/2'}" FontAttributes="None" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0"/>
+                                    <Label x:Name="lblQuickplayHighScore" Text="2279" FontSize="{Binding Source={x:Reference gr7}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(10/23))*0.8'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="End" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="1"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+
+                    <Grid x:Name="gr8" Grid.Row="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Join Date" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0"/>
+                        <Label Text="Consecutive Login Streak" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="1"/>
+                        <Label Text="Challenges Completed" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="2"/>
+                        <Label Text="Avatars Unlocked" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="3"/>
+
+                        <Label x:Name="lblJoinDate" Text="02/09/22" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="End" VerticalOptions="Center" HorizontalOptions="End" Grid.Row="0"/>
+                        <Label x:Name="lblConsecutiveLoginStreak" Text="2" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="End" VerticalOptions="Center" HorizontalOptions="End" Grid.Row="1"/>
+                        <Label x:Name="lblChallengesCompleted" Text="6" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="End" VerticalOptions="Center" HorizontalOptions="End" Grid.Row="2"/>
+                        <Label x:Name="lblAvatarsUnlocked" Text="12" FontSize="{Binding Source={x:Reference gr8}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(1/4))*0.7'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="End" VerticalOptions="Center" HorizontalOptions="End" Grid.Row="3"/>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+
+            <Grid x:Name="bdControl" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="1">
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#3fb1d4" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.25"/>
+                            <GradientStop Color="#001e2d" Offset="1.00"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <Grid x:Name="bdNavigation">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="gr9" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="profile.png" BackgroundColor="Transparent" Opacity="1.0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Profile" Opacity="1.0" FontSize="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+                    </Grid>
+
+                    <Grid x:Name="gr10" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="home.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Home" Opacity="0.5" FontSize="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Home"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Grid x:Name="gr11" Grid.Row="0" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="challenges.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Challenges" Opacity="0.5" FontSize="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Challenges"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Tetris.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Home">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:MathExpressionConverter x:Key="MathExpressionConverter" />
+            <xct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid x:Name="bdGrid">
+        <BoxView x:Name="bdGradient" Scale="1.2" AnchorX="1" AnchorY="0">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="-0.85,0.2" EndPoint="1,1">
+                    <GradientStop Color="#1db7de" Offset="0.25"/>
+                    <GradientStop Color="#1c98ba" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.50"/>
+                    <GradientStop Color="#1bacd1" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.77"/>
+                    <GradientStop Color="#1d8eb5" Offset="0.77"/>
+                    <GradientStop Color="#207591" Offset="0.88"/>
+                    <GradientStop Color="#113c4a" Offset="1.00"/>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="bdHome" Margin="20, 40, 20, 0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="3*"/>
+                    <!-- <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/> -->
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="grAvatar" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton x:Name="iBtnUser" Source="avatar_image0.jpg" Aspect="Fill" VerticalOptions="Fill" WidthRequest="{Binding Source={x:Reference grAvatar}, Path=Height}" CornerRadius="{Binding Source={x:Reference grAvatar}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.15'}" Grid.Row="0" Grid.Column="0" Clicked="TapGestureRecognizer_Profile"/>
+                    <Grid x:Name="gr2" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="lblUsername" Text="Username" FontSize="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="End" VerticalOptions="End" HorizontalOptions="Start" FontAttributes="Bold" Grid.Row="0"/>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1">
+                            <Label x:Name="lblLevel" Text="Lv" FontSize="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" TextColor="White" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="None"/>
+                            <ProgressBar x:Name="pbExperience" HeightRequest="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}" WidthRequest="{Binding Source={x:Reference gr2}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.33'}" Progress="0.15" BackgroundColor="#7F000000" ProgressColor="Goldenrod" HorizontalOptions="Start" VerticalOptions="Start" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference gr2}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.5'}"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <Grid x:Name="gr3" Grid.Row="0" Grid.Column="2" HeightRequest="{Binding Source={x:Reference grAvatar}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.65'}" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ImageButton x:Name="iBtnAbout" BackgroundColor="#7F000000" Opacity="0.8" Source="about.png" Aspect="AspectFit" VerticalOptions="Fill" HorizontalOptions="Fill" WidthRequest="{Binding Source={x:Reference gr3}, Path=Height}" CornerRadius="{Binding Source={x:Reference iBtnAbout}, Path=Height}" Grid.Column="0" Clicked="iBtnAbout_Clicked"/>
+                        <ImageButton x:Name="iBtnSettings" BackgroundColor="#7F000000" Opacity="0.8" Source="settings.png" Aspect="AspectFit" VerticalOptions="Fill" HorizontalOptions="Fill" WidthRequest="{Binding Source={x:Reference gr3}, Path=Height}" CornerRadius="{Binding Source={x:Reference iBtnSettings}, Path=Height}" Grid.Column="1" Clicked="iBtnSettings_Clicked"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.0*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.8*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="filtris_logo.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Grid.RowSpan="9" Grid.ColumnSpan="3"/>
+
+                    <Grid Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <BoxView x:Name="bvYouTube" BackgroundColor="Black" Opacity="0.5" Margin="-20,0,0,0" VerticalOptions="Fill" HorizontalOptions="Fill" Grid.Row="1" CornerRadius="0,999999,0,999999"/>
+                        <Label Text="youtube.com/FiltrisOfficial" Margin="-15,0,0,0" FontSize="{Binding Source={x:Reference bvYouTube}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="1"/>
+                        <Image x:Name="imgYouTube" Source="youtube.png" Margin="-10,0,10,0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="0" Rotation="-5" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference imgYouTube}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.2'}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_YouTube"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <BoxView x:Name="bvTwitter" BackgroundColor="Black" Opacity="0.5" Margin="0,0,-20,0" VerticalOptions="Fill" HorizontalOptions="Fill" Grid.Row="1" CornerRadius="999999,0,999999,0"/>
+                        <Label Text="twitter.com/FiltrisOfficial" Margin="0,0,-15,0" FontSize="{Binding Source={x:Reference bvTwitter}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Grid.Row="1"/>
+                        <Image x:Name="imgTwitter" Source="twitter.png" Margin="10,0,-10,0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="End" Grid.Row="0" Rotation="-5" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference imgTwitter}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.2'}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Twitter"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Grid.RowSpan="3" Grid.Column="0" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <BoxView x:Name="bvFacebook" BackgroundColor="Black" Opacity="0.5" Margin="-20,0,0,0" VerticalOptions="Fill" HorizontalOptions="Fill" Grid.Row="1" CornerRadius="0,999999,0,999999"/>
+                        <Label Text="facebook.com/FiltrisOfficial" Margin="-15,0,0,0" FontSize="{Binding Source={x:Reference bvFacebook}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.5)*0.8'}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="1"/>
+                        <Image x:Name="imgFacebook" Source="facebook.png" Margin="-10,0,10,0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="0" Rotation="-5" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference imgFacebook}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.2'}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Facebook"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!--<BoxView BackgroundColor="Black" Opacity="0.5" Margin="-20,0,0,0" VerticalOptions="Fill" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="0" CornerRadius="0,30,0,30"/>-->
+                    <!--<Label Text="youtube.com/TetrisOfficial" Margin="-15,0,0,0" FontSize="Micro" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0"/>-->
+                    <!--<ImageButton Source="youtube.png" Margin="-10,0,0,0" Aspect="Fill" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="0" Grid.Column="0" Rotation="-5" CornerRadius="10"/>-->
+
+                    <!--<BoxView BackgroundColor="Black" Opacity="0.5" VerticalOptions="Fill" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="0" CornerRadius="0,30,0,30"/>-->
+                    <!--<Label Text="facebook.com/TetrisOfficial" Margin="-15,0,0,-18" FontSize="Micro" TextColor="White" VerticalOptions="End" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0"/>-->
+                    <!--<ImageButton Margin="-10,36,0,0" Source="facebook.png" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="46" WidthRequest="46" Grid.Row="1" Grid.Column="0" Rotation="-5" CornerRadius="10"/>-->
+
+                    <!--<Image Source="tetris_logo.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Grid.RowSpan="9" Grid.ColumnSpan="3"/>-->
+
+                    <!--<BoxView BackgroundColor="Black" Opacity="0.5" Margin="0,0,-20,20" VerticalOptions="End" HorizontalOptions="Start" HeightRequest="30" WidthRequest="100" Grid.RowSpan="2" Grid.Column="2" CornerRadius="30,0,30,0"/>-->
+                    <!--<Label Text="twitter.com/TetrisOfficial" Margin="15,0,-15,22" FontSize="Micro" TextColor="White" VerticalOptions="End" HorizontalOptions="Start" Grid.RowSpan="2" Grid.Column="2"/>-->
+                    <!--<ImageButton Margin="0,63,-10,0" Source="twitter.png" Aspect="Fill" VerticalOptions="Center" HorizontalOptions="End" HeightRequest="46" WidthRequest="46" Grid.RowSpan="2" Grid.Column="2" Rotation="5" CornerRadius="10"/>-->
+                </Grid>
+
+                <Grid x:Name="grDailyOutline" Grid.Row="1" BackgroundColor="#7F000000" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference grDailyOutline}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.05'}">
+                    <ScrollView HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="{Binding Source={x:Reference grDailyOutline}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.85'}">
+                        <ScrollView.WidthRequest>
+                            <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0-(x1*0.15)">
+                                <Binding Source="{x:Reference grDailyOutline}" Path="Width"/>
+                                <Binding Source="{x:Reference grDailyOutline}" Path="Height"/>
+                            </MultiBinding>
+                        </ScrollView.WidthRequest>
+                        <StackLayout x:Name="bdDaily">
+                            <Grid x:Name="grDailyDescription">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.15*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image x:Name="imgCalendar" Source="calendar.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="{Binding Source={x:Reference imgCalendar}, Path=Width}" Grid.Row="0" Grid.Column="0"/>
+                                <Label Text="DAILY" FontSize="{Binding Source={x:Reference imgCalendar}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                                <Image x:Name="imgClock" Source="clock.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="End" HeightRequest="{Binding Source={x:Reference imgClock}, Path=Width}" Grid.Row="0" Grid.Column="2"/>
+                                <Label x:Name="lblDailyTimeHome" Text="14h 44m" FontSize="{Binding Source={x:Reference imgClock}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="End" FontAttributes="None" Grid.Row="0" Grid.Column="3"/>
+                            </Grid>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Challenges"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+
+                <Button x:Name="btnPlayTetris" Text="PLAY FILTRIS" FontSize="{Binding Source={x:Reference btnPlayTetris}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.45'}" FontAttributes="Bold" TextColor="#7d4700" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference bdHome}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.66'}" HeightRequest="{Binding Source={x:Reference bdHome}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.085'}" Grid.Row="3" CornerRadius="{Binding Source={x:Reference btnPlayTetris}, Path=Height}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1" Clicked="btnPlayTetris_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,2.5">
+                            <GradientStop Color="#fabe46" Offset="0.15"/>
+                            <GradientStop Color="#fad264" Offset="0.15"/>
+                            <GradientStop Color="#fad264" Offset="0.70"/>
+                            <GradientStop Color="#fabe46" Offset="0.70"/>
+                            <GradientStop Color="#fabe46" Offset="1.00"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--<StackLayout Padding="40, 60" Grid.RowSpan="2" Grid.ColumnSpan="4">
+                <Button x:Name="BtnPlay" Text="Играй" BackgroundColor="#073E7B" TextColor="White" Margin="10" Clicked="BtnPlay_Clicked"/>
+                <Button x:Name="BtnOptions" Text="Настройки" BackgroundColor="#073E7B" TextColor="White" Margin="10" Clicked="BtnOptions_Clicked"/>
+                <Button x:Name="BtnInfo" Text="Информация за устройството" BackgroundColor="#073E7B" TextColor="White" Margin="10" Clicked="BtnInfo_Clicked"/>
+                <Button x:Name="BtnAbout" Text="Информация за автора" BackgroundColor="#073E7B" TextColor="White" Margin="10" Clicked="BtnAbout_Clicked"/>
+                <Image Source="main.png" Aspect="AspectFill" VerticalOptions="EndAndExpand" HorizontalOptions="Fill"/>
+            </StackLayout>-->
+            </Grid>
+
+            <Grid x:Name="bdControl" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="1">
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#3fb1d4" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.25"/>
+                            <GradientStop Color="#001e2d" Offset="1.00"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <Grid x:Name="bdNavigation">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="gr9" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="profile.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Profile" Opacity="0.5" FontSize="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Profile"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Grid x:Name="gr10" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="home.png" BackgroundColor="Transparent" Opacity="1.0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Home" Opacity="1.0" FontSize="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+                    </Grid>
+
+                    <Grid x:Name="gr11" Grid.Row="0" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="challenges.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Challenges" Opacity="0.5" FontSize="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Challenges"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

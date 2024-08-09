@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Tetris.GamePage"
+             Title="Tetris">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:MathExpressionConverter x:Key="MathExpressionConverter" />
+            <xct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid x:Name="bdGrid">
+            <BoxView x:Name="bdGradient" Scale="1.2" AnchorX="1" AnchorY="0">
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="-0.85,0.2" EndPoint="1,1">
+                        <GradientStop Color="#2A66C8" Offset="0.25"/>
+                        <GradientStop Color="#2158BD" Offset="0.36"/>
+                        <GradientStop Color="#3272D6" Offset="0.36"/>
+                        <GradientStop Color="#2D6ED2" Offset="0.50"/>
+                        <GradientStop Color="#2966C2" Offset="0.53"/>
+                        <GradientStop Color="#2061C5" Offset="0.53"/>
+                        <GradientStop Color="#3173D4" Offset="0.67"/>
+                        <GradientStop Color="#266BCA" Offset="0.67"/>
+                        <GradientStop Color="#1859BD" Offset="0.77"/>
+                        <GradientStop Color="#1C64CC" Offset="0.77"/>
+                        <GradientStop Color="#084BB6" Offset="0.88"/>
+                        <GradientStop Color="#0442A9" Offset="1.00"/>
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            
+            <Grid x:Name="LayoutRoot">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1.3*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="grLL" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblLines" Text="Lines 0" FontSize="{Binding Source={x:Reference grLL}, Path=Height}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="None" Grid.Row="0"/>
+                    <Label x:Name="lblLevel" Text="Level 1" FontSize="{Binding Source={x:Reference grLL}, Path=Height}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="End" VerticalOptions="Center" HorizontalOptions="End" FontAttributes="None" Grid.Row="0"/>
+                </Grid>
+
+                <Grid x:Name="grScore" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblCurScore" Text="0" FontSize="{Binding Source={x:Reference grScore}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.66)*0.7'}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0"/>
+                    <Label x:Name="lblHighScore" Text="0" FontSize="{Binding Source={x:Reference grScore}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*0.66)*0.3'}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="None" Grid.Row="1"/>
+                </Grid>
+
+                <Grid x:Name="grTetrisPanel" Grid.Row="3" Grid.Column="2" BackgroundColor="#0C1A49" xct:CornerRadiusEffect.CornerRadius="3">
+                    <!--<Frame BackgroundColor="#0C1A49" BorderColor="#6D82F9" CornerRadius="3"/>-->
+                    <!--<BoxView BackgroundColor="#0C1A49" Margin="2,2,2,2" CornerRadius="3"/>-->
+                </Grid>
+
+                <Grid IsVisible="false" x:Name="grTimerOutline" BackgroundColor="#7F000000" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference grTetrisPanel}, Path=Width}" xct:CornerRadiusEffect.CornerRadius="3" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid x:Name="grTimer" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference grTimerOutline}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.90'}">
+                        <!--<Grid.HeightRequest>
+                            <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0-(x1*0.15)">
+                                <Binding Source="{x:Reference grTimerOutline}" Path="Width"/>
+                                <Binding Source="{x:Reference grTimerOutline}" Path="Height"/>
+                            </MultiBinding>
+                        </Grid.HeightRequest>-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label x:Name="lblTimer" Text="2:53" FontSize="{Binding Source={x:Reference grTimer}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.47'}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" Grid.Column="0"/>
+                        <ProgressBar x:Name="pbTimer" Progress="0.15" BackgroundColor="Transparent" ProgressColor="Goldenrod" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="grPause" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ImageButton x:Name="iBtnPause" BackgroundColor="#5FFFFFFF" BorderColor="White" BorderWidth="{Binding Source={x:Reference iBtnPause}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.03'}" Source="pause.png" Aspect="AspectFit" VerticalOptions="Fill" HorizontalOptions="End" WidthRequest="{Binding Source={x:Reference iBtnPause}, Path=Height}" CornerRadius="{Binding Source={x:Reference iBtnPause}, Path=Height}" Grid.Row="0" Clicked="iBtnPause_Clicked"/>
+                </Grid>
+            </Grid>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_TappedOnce"/>
+                <!--<TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_TappedTwice"/>-->
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

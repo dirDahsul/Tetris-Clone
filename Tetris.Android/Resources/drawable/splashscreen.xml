@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <color android:color="@color/splash_background"/>
+  </item>
+  <item android:width="260dp"
+        android:height="260dp"
+        android:gravity="center">
+    <bitmap
+      android:src="@drawable/filtris_logo"
+      android:gravity="fill"
+      android:tileMode="disabled"/>
+  </item>
+</layer-list>

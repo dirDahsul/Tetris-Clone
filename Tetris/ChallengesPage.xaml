@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Tetris.ChallengesPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Challenges">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:MathExpressionConverter x:Key="MathExpressionConverter" />
+            <xct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid x:Name="bdGrid">
+        <BoxView x:Name="bdGradient" Scale="1.2" AnchorX="1" AnchorY="0">
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="-0.85,0.2" EndPoint="1,1">
+                    <GradientStop Color="#1db7de" Offset="0.25"/>
+                    <GradientStop Color="#1c98ba" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.36"/>
+                    <GradientStop Color="#20a6c9" Offset="0.50"/>
+                    <GradientStop Color="#1bacd1" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.53"/>
+                    <GradientStop Color="#1c98ba" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.67"/>
+                    <GradientStop Color="#1fa2c4" Offset="0.77"/>
+                    <GradientStop Color="#1d8eb5" Offset="0.77"/>
+                    <GradientStop Color="#207591" Offset="0.88"/>
+                    <GradientStop Color="#113c4a" Offset="1.00"/>
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="bdChallenges" Margin="20,40,20,0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="13*"/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="gdDetails" Grid.Row="0" BackgroundColor="#9919448a" xct:CornerRadiusEffect.CornerRadius="{Binding Source={x:Reference gdDetails}, Path=Width}">
+                    <Grid x:Name="grDetailsDesc" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference gdDetails}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.9'}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="lvl.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="{Binding Source={x:Reference grDetailsDesc}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" WidthRequest="{Binding Source={x:Reference grDetailsDesc}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" Grid.Row="0" Grid.Column="0"/>
+                        <Label x:Name="lblLevel" Text="Lv" FontSize="{Binding Source={x:Reference grDetailsDesc}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.35'}" FontAttributes="Bold" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"/>
+                        <BoxView x:Name="bvExperience" BackgroundColor="Black" Opacity="0.5" CornerRadius="30" HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="{Binding Source={x:Reference grDetailsDesc}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.5'}" Grid.Row="0" Grid.Column="2"/>
+                        <ProgressBar x:Name="pbExperience" Progress="0.15" BackgroundColor="Transparent" ProgressColor="Goldenrod" WidthRequest="{Binding Source={x:Reference bvExperience}, Path=Width, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.9'}" HorizontalOptions="Center" VerticalOptions="Fill" Grid.Row="0" Grid.Column="2"/>
+                        <Label x:Name="lblExperience" Text="30/180" FontSize="{Binding Source={x:Reference grDetailsDesc}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.3'}" FontAttributes="Bold" TextColor="White" Opacity="0.9" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+
+                <ScrollView Grid.Row="1">
+                    <Grid x:Name="grChallengesOutline">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Frame x:Name="frDailyOutline" Grid.Row="0" BackgroundColor="#7F000000" CornerRadius="5">
+                            <StackLayout x:Name="bdDaily">
+                                <Grid x:Name="grDailyDescription">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.15*"/>
+                                        <ColumnDefinition Width="11*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image x:Name="imgCalendar" Source="calendar.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="{Binding Source={x:Reference imgCalendar}, Path=Width}" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="DAILY" FontSize="{Binding Source={x:Reference imgCalendar}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                                    <Image x:Name="imgClock" Source="clock.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="End" HeightRequest="{Binding Source={x:Reference imgClock}, Path=Width}" Grid.Row="0" Grid.Column="2"/>
+                                    <Label x:Name="lblDailyTimeChallenges" Text="14h 44m" FontSize="{Binding Source={x:Reference imgClock}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='x*0.8'}" TextColor="White" VerticalOptions="Center" HorizontalOptions="End" FontAttributes="None" Grid.Row="0" Grid.Column="3"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+
+            <Grid x:Name="bdControl" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="1">
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#3fb1d4" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.01"/>
+                            <GradientStop Color="#00466e" Offset="0.25"/>
+                            <GradientStop Color="#001e2d" Offset="1.00"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <Grid x:Name="bdNavigation">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="gr9" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="profile.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Profile" Opacity="0.5" FontSize="{Binding Source={x:Reference gr9}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Profile"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Grid x:Name="gr10" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="home.png" BackgroundColor="Transparent" Opacity="0.5" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Home" Opacity="0.5" FontSize="{Binding Source={x:Reference gr10}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Home"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <Grid x:Name="gr11" Grid.Row="0" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="challenges.png" BackgroundColor="Transparent" Opacity="1.0" Aspect="AspectFit" VerticalOptions="End" HorizontalOptions="Center" Grid.Row="0" HeightRequest="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(4/7))*0.52'}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.Opacity="1"/>
+                        <Label Text="Challenges" Opacity="1.0" FontSize="{Binding Source={x:Reference gr11}, Path=Height, Converter={StaticResource MathExpressionConverter}, ConverterParameter='(x*(3/7))*0.37'}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="1"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>
