@@ -1,5 +1,30 @@
 # Tetris Clone - Xamarin Project
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+  - [Home Page](#home-page)
+  - [Game Page](#game-page)
+    - [Classic Mode](#classic-mode)
+    - [Time-Limited Mode](#time-limited-mode)
+  - [Settings Page](#settings-page)
+  - [Profile Page](#profile-page)
+  - [Challenges Page](#challenges-page)
+- [Screenshots & Videos](#screenshots--videos)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [How to Play](#how-to-play)
+- [Project Structure](#project-structure)
+  - [Main Pages](#main-pages)
+- [Future Improvements](#future-improvements)
+- [Learning Journey](#learning-journey)
+  - [Motivation](#motivation)
+  - [Challenges Faced](#challenges-faced)
+  - [Technologies Used](#technologies-used)
+  - [Lessons Learned](#lessons-learned)
+
 ## Overview
 
 Welcome to my first Xamarin project, created 2022, published today - a Tetris clone built for educational and personal purposes. The objective of this project was to create a functional Tetris clone in the shortest time possible while familiarizing myself with the Xamarin IDE and its capabilities. This project is designed for mobile devices and features adaptable UI elements that scale appropriately across different screen sizes.
