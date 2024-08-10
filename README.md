@@ -68,8 +68,10 @@ To run this project, you will need:
 
 - Visual Studio with Xamarin support
 - An Android emulator, or a physical android device connected to your development environment
-(Note: Android support only. Project itself is build on Xamarin.Forms, so technically code can be easily recompiled for iOS use)
-(Note: Project files removed from repository to make sure distribution is not possible in any way or form)
+
+*(Note: Android support only. Project itself is build on Xamarin.Forms, so technically code can be easily recompiled for iOS use)*
+
+*(Note: Project files removed from repository to make sure distribution is not possible in any way or form)*
 
 ### ~~Installation~~ (Not possible because the content has been deleted to protect against distribution)
 
