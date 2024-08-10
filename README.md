@@ -40,29 +40,25 @@ Welcome to my first Xamarin project, created 2022, published today - a Tetris cl
 - **Challenges Page:**
   - View a list of daily challenges and track XP and level progress.
 
-## Screenshots
+## Screenshots & Videos
+
+*(Screenshot section)*
+
+![Picture1](https://github.com/user-attachments/assets/93d075e9-721f-4cb1-bf14-d67ebf609786)
+![Picture2](https://github.com/user-attachments/assets/1e7bf7d9-26c7-4f40-8f49-37a9dc2df574)
+![Picture3](https://github.com/user-attachments/assets/bacf4538-40b4-4f65-bac8-08c6a563de0b)
+![Picture4](https://github.com/user-attachments/assets/76b465ba-894e-47cf-b174-f6ebbdf982e3)
+![Picture5](https://github.com/user-attachments/assets/4955ea22-0c2f-4be1-90fd-7abeca686565)
+![Picture6](https://github.com/user-attachments/assets/52ecfa64-3791-461b-b205-62335a808ea1)
+![Picture7](https://github.com/user-attachments/assets/b78455ed-7555-4cbe-8231-d4d7e688dc8a)
+![Picture8](https://github.com/user-attachments/assets/d53b6e5c-8b4d-4dcc-b7ff-d343e92718ef)
+![Picture9](https://github.com/user-attachments/assets/208b3301-103e-437d-9f9e-818f667d562e)
 
 *(Video section)*
-<video width="640" height="480" controls>
-  <source src="Screenrecorder-2022-..(1).mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-<video width="640" height="480" controls>
-  <source src="Screenrecorder-2022-..(2).mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-<video width="640" height="480" controls>
-  <source src="Screenrecorder-2022-..(3).mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-<video width="640" height="480" controls>
-  <source src="Screenrecorder-2022-..(4).mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-<video width="640" height="480" controls>
-  <source src="Screenrecorder-2022-..(5).mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+https://github.com/user-attachments/assets/eb24bd18-153c-400a-8219-3bf3df2e44f9
+
+https://github.com/user-attachments/assets/ec2b7559-4bae-4703-b11e-de85f949c9ba
 
 ## Getting Started
 
@@ -75,7 +71,7 @@ To run this project, you will need:
 (Note: Android support only. Project itself is build on Xamarin.Forms, so technically code can be easily recompiled for iOS use)
 (Note: Project files removed from repository to make sure distribution is not possible in any way or form)
 
-### ~~Installation~~ (Not possible, as project pages have been deleted to protect agains distribution)
+### ~~Installation~~ (Not possible because the content has been deleted to protect against distribution)
 
 1. Clone this repository:
 
