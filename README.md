@@ -1,5 +1,7 @@
 # Tetris Clone - Xamarin Project
 
+This is my first Xamarin project, a Tetris clone developed in 2022 as a hands-on way to learn Xamarin and mobile app development. The goal was to build a functional game quickly while experimenting with Xamarin's features and understanding its potential. This project demonstrates my learning process and growth as a developer, with a focus on building an adaptable, mobile-friendly game.
+
 ## Table of Contents
 
 - [Overview](#overview)
