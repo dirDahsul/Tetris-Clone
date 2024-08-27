@@ -187,7 +187,7 @@ Since this is a personal project, that is not for distribution, I am not seeking
 
 ## License
 
-This project is licensed under the GPL-3.0 license License. See the LICENSE file for details.
+This project is licensed under the GPL-3.0 License. See the LICENSE file for details.
 
 ## Acknowledgements
 
